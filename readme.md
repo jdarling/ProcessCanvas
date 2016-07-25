@@ -7,3 +7,8 @@ Status
 -------
 
 Right now ProcessCanvas works and works quite well, but it does need a lot of cleanup, documentation, test's written, and etc before it would be easy for the average developer to use it.  Hopefully I will get around to all of that, but until then feel free to look at the examples and the source code.
+
+Sample usage
+------------
+
+See the example in examples/basic as a getting started point.
