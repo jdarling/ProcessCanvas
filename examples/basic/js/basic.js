@@ -16,11 +16,13 @@ var testData = {
     },
     {
       id: 2,
-      name: 'Item 2'
+      name: 'Item 2',
+      shape: 'cloud' // Draw a cloud
     },
     {
       id: 3,
-      name: 'Item 3'
+      name: 'Item 3',
+      shape: 'invalid shape' // Invalid shape isn't registered, so draw normal "box" shape
     },
     {
       id: 4,
@@ -77,12 +79,35 @@ var recenterViewTree = function(nodes){
   viewer.moveViewTo(tree.x-(viewer.width/2)+(tree.width/2), tree.y-(viewer.height/2)+(tree.height/2));
 };
 
+var toCamelCase = function(str){
+  // Lower cases the string
+  return str.toLowerCase()
+    // Replaces any - or _ characters with a space
+    .replace( /[-_]+/g, ' ')
+    // Removes any non alphanumeric characters
+    .replace( /[^\w\s]/g, '')
+    // Uppercases the first character in each group immediately following a space
+    // (delimited by spaces)
+    .replace( / (.)/g, function($1) { return $1.toUpperCase(); })
+    // Removes spaces
+    .replace( / /g, '' );
+};
+
+var getNodeShape = function(node){
+  if(node && node.shape){
+    var shapeName = toCamelCase('draw '+node.shape);
+    return ProcessCanvas[shapeName]?shapeName:'drawProcess';
+  }
+  return 'drawProcess';
+};
+
 // Walks all of the data and creates view objects and their connections based on the data
 var walkData = function(root, scene, builderCanvas, direction){
   var vObject = new ViewObject(), tmp;
+  var shape = getNodeShape(root);
   vObject.setCaption(root.name||root.id);
   vObject.setSize(100);
-  vObject.setDrawable(root.displayshape||'drawProcess');
+  vObject.setDrawable(shape);//root.displayshape||'drawProcess');
   vObject.id = root.id;
   vObject.displayOptions.textAlign = 'center';
   if(root.decorator){
