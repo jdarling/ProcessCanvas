@@ -12,3 +12,5 @@ Sample usage
 ------------
 
 See the example in examples/basic as a getting started point.
+
+You can also view the basic example at https://rawgit.com/jdarling/ProcessCanvas/master/examples/basic/index.html
