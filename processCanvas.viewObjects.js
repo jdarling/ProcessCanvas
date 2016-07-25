@@ -1,12 +1,12 @@
 (function(container, factory){
   // AMD Loader
   if(typeof define === "function" && define.amd) {
-    return define(['ProcessCanvas'], factory);
+    return define([], factory);
   }
 
   // CommonJS
   if(typeof module === "object" && module.exports) {
-    return module.exports = factory(require('./processCanvas'));
+    return module.exports = factory();
   }
 
   // Normal browser
@@ -16,8 +16,8 @@
       container[key] = exports[key];
     });
     return container;
-  }(factory(container.ProcessCanvas)));
-}(this, function(ProcessCanvas){
+  }(factory()));
+}(this, function(){
   var ViewObjectList = function(defaultCanvas){
     var ViewObjectList = this,
         _items = new Array(),
