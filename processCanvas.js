@@ -139,7 +139,9 @@
   },
 
   ProcessCanvasEvents = function(forObject){
-    var _custom_events = {}, ProcessCanvasEvents = {
+    var _custom_events = {},
+        handler = false,
+        ProcessCanvasEvents = {
       handler: function(eventName){
         if(!(handler = _custom_events[eventName])) handler = _custom_events[eventName] = new ProcessCanvasCustomEvent(forObject, eventName);
         return handler;
