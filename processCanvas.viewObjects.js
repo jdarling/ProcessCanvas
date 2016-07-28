@@ -49,6 +49,9 @@
         _items[idx].subscribe('decoratorLoaded', decoratorLoaded);
         _items.splice(idx, 1);
       };
+      ViewObjectList.clear = function(){
+        _items = new Array();
+      };
       ViewObjectList.indexOf = function(viewObject){
         return _items.indexOf(viewObject);
       };
